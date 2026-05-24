@@ -4,58 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0a0a1a">
-<title>Quality Quest — Aprenda Qualidade Industrial</title>
+<title>Quality Quest v2 — Jornada pela Qualidade Industrial</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230a0a1a'/><text y='24' x='4' font-size='22'>🎮</text></svg>">
 </head>
 <body>
 
-<!-- STARS -->
 <div class="stars-bg" id="starsContainer"></div>
 
 <!-- ══════════ START SCREEN ══════════ -->
 <div class="screen" id="startScreen">
-  <div class="start-content">
+  <div class="start-inner">
     <div class="game-logo">QUALITY QUEST</div>
-    <div class="game-tagline">► Jornada pela Qualidade Industrial ◄</div>
+    <div class="game-sub">► Jornada pela Qualidade Industrial ◄</div>
 
     <div class="intro-card">
       <div class="card-title">— O QUE SÃO CONTROLES ESTATÍSTICOS? —</div>
       <div class="card-text">
-        Controles estatísticos são <b>ferramentas matemáticas</b> usadas na indústria para garantir que produtos saiam <b>dentro das especificações</b>, identificar <b>falhas antes</b> de acontecerem e tomar decisões baseadas em <b>dados reais</b>.<br><br>
-        Juntos formam a base do <b>Six Sigma</b> — criado pela Motorola em 1986 e adotado por gigantes como GE, Toyota e 3M para reduzir defeitos a menos de <b>3,4 por milhão</b> de produções.
+        Ferramentas <b>matemáticas</b> usadas na indústria para garantir produtos dentro das especificações, identificar falhas antes de acontecerem e tomar decisões baseadas em <b>dados reais</b>, não achismos.<br><br>
+        Base do <b>Six Sigma</b> — criado pela Motorola em 1986. Meta: menos de <b>3,4 defeitos por milhão</b> de produções.
       </div>
     </div>
 
-    <div class="belts-row">
-      <div class="belt-chip" style="color:#c4b5a0;border-color:#888;">🤍 White Belt</div>
-      <div class="belt-chip" style="color:#f0a832;border-color:#f0a832;">💛 Yellow Belt</div>
-      <div class="belt-chip" style="color:#27c97c;border-color:#27c97c;">💚 Green Belt</div>
-      <div class="belt-chip" style="color:#a78bfa;border-color:#7c3aed;">🖤 Black Belt</div>
-      <div class="belt-chip" style="color:#c084fc;border-color:#9333ea;">💜 Master BB</div>
+    <div class="empresas-preview">
+      <div class="emp-chip" style="border-color:#27c97c;color:#27c97c;">🚗 Toyota<br><small style="font-size:10px;color:#888">White → Yellow</small></div>
+      <div class="emp-chip" style="border-color:#4b8ef0;color:#4b8ef0;">🏭 3M<br><small style="font-size:10px;color:#888">Yellow → Green</small></div>
+      <div class="emp-chip" style="border-color:#a78bfa;color:#a78bfa;">🔬 Bell Labs<br><small style="font-size:10px;color:#888">Green → Black</small></div>
+      <div class="emp-chip" style="border-color:#e8455a;color:#e8455a;">⚡ Motorola<br><small style="font-size:10px;color:#888">Black → Master</small></div>
     </div>
 
-    <div class="controls-grid">
-      <div class="ctrl-card">
-        <span class="ctrl-key">WASD / SETAS</span>
-        Mover e pular<br>(PC / Teclado)
-      </div>
-      <div class="ctrl-card">
-        <span class="ctrl-key">BOTÕES NA TELA</span>
-        Controles mobile<br>(Deitado — landscape)
-      </div>
-      <div class="ctrl-card">
-        <span class="ctrl-key">OBJETIVO</span>
-        Coletar todos os itens<br>de cada fase
-      </div>
-      <div class="ctrl-card">
-        <span class="ctrl-key">INIMIGOS</span>
-        Pule em cima para<br>eliminar defeitos!
-      </div>
-    </div>
-
-    <div style="font-family:'VT323',monospace;font-size:clamp(15px,4vw,20px);color:#6b7385;margin-bottom:14px;text-align:center;">
-      4 Fases · 12 Ferramentas · Quiz por Fase · Timer · Sistema de Belts
+    <div class="ctrl-grid">
+      <div class="ctrl-card"><span class="ctrl-key">WASD / SETAS</span>Mover e pular (PC)</div>
+      <div class="ctrl-card"><span class="ctrl-key">BOTÕES NA TELA</span>Controles mobile</div>
+      <div class="ctrl-card"><span class="ctrl-key">[ E ] / ▲ PERTO</span>Interagir com NPCs e portas</div>
+      <div class="ctrl-card"><span class="ctrl-key">OBJETIVO</span>Visitar 4 empresas, aprender 11 ferramentas</div>
     </div>
 
     <button class="btn-pixel" id="btnStart">► INICIAR JORNADA ◄</button>
@@ -65,59 +46,111 @@
 <!-- ══════════ HUD ══════════ -->
 <div id="hud" class="hidden">
   <div>
-    <div class="hud-fase" id="hudFase">Fase 1</div>
+    <div class="hud-fase" id="hudFase">🌍 Mundo Aberto</div>
     <div class="hud-belt" id="hudBelt">🤍 White Belt</div>
   </div>
   <div class="prog-row" id="hudProgress"></div>
-  <div style="text-align:right;">
-    <div class="hud-score" id="hudScore">ITENS: 0/3</div>
+  <div style="text-align:right">
+    <div class="hud-score" id="hudScore">EMPRESAS: 0/4</div>
     <div class="hud-timer" id="hudTimer">0s</div>
     <div class="hud-vidas" id="hudVidas">❤️❤️❤️</div>
   </div>
 </div>
 
-<!-- ══════════ CANVAS ══════════ -->
-<canvas id="gameCanvas"></canvas>
-
-<!-- ══════════ DAMAGE FLASH ══════════ -->
-<div id="damageFlash"></div>
-
-<!-- ══════════ NPC DIALOG ══════════ -->
-<div id="npcBox" class="hidden">
-  <div class="npc-header">
-    <div class="npc-emoji" id="npcEmoji">👔</div>
-    <div class="npc-nome" id="npcNome">NPC</div>
+<!-- ══════════ MISSÃO HUD ══════════ -->
+<div id="missaoHUD" class="hidden">
+  <div>
+    <div class="missao-label" id="missaoTexto">Missão ativa</div>
   </div>
-  <div class="npc-fala" id="npcFala">...</div>
-  <button class="npc-btn" id="npcBtnOk">► OK, vamos lá!</button>
+  <div class="missao-count" id="missaoCount">0/3</div>
 </div>
 
-<!-- ══════════ POPUP ITEM ══════════ -->
-<div id="popup" class="hidden">
-  <div class="popup-box">
-    <div class="popup-header" id="popupHeader">
-      <div class="popup-emoji-big" id="popupEmoji">📊</div>
+<!-- ══════════ CANVAS ══════════ -->
+<canvas id="gameCanvas"></canvas>
+<div id="damageFlash"></div>
+
+<!-- ══════════ TRANSIÇÃO ══════════ -->
+<div id="transicaoScreen" class="hidden">
+  <div class="trans-emoji" id="transEmpresaEmoji">🏭</div>
+  <div class="trans-nome" id="transEmpresaNome">Empresa</div>
+  <div class="trans-pais" id="transEmpresaPais">País — Ano</div>
+  <div class="trans-desc" id="transEmpresaDesc">Descrição</div>
+  <div class="trans-fatos" id="transFatos"></div>
+  <div class="trans-bar"><div class="trans-bar-fill"></div></div>
+</div>
+
+<!-- ══════════ PLACA MODAL ══════════ -->
+<div id="placaModal" class="hidden">
+  <div class="placa-box">
+    <div class="placa-header" id="placaHeader">
+      <div class="placa-emoji" id="placaEmoji">🏭</div>
       <div>
-        <div class="popup-title" id="popupTitleTxt">COLETADO!</div>
-        <div class="popup-empresa" id="popupEmpresa"></div>
+        <div class="placa-nome" id="placaNome">Empresa</div>
+        <div class="placa-pais" id="placaPais">País</div>
       </div>
     </div>
-    <div class="popup-body">
-      <div class="popup-item-name" id="popupItemName"></div>
-      <div class="popup-desc" id="popupDesc"></div>
-      <div class="popup-fases" id="popupFases"></div>
-      <div class="popup-formula" id="popupFormula"></div>
-      <div class="popup-dica" id="popupDica"></div>
-      <button class="popup-btn" id="popupBtn">► CONTINUAR ◄</button>
+    <div class="placa-body">
+      <div class="placa-desc" id="placaDesc"></div>
+      <div class="placa-fatos" id="placaFatos"></div>
+      <button class="btn-pixel btn-verde" id="placaFechar" style="width:100%;justify-content:center;">► FECHAR E CONTINUAR</button>
     </div>
   </div>
+</div>
+
+<!-- ══════════ NPC INTRO ══════════ -->
+<div id="npcIntroBox" class="hidden">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    <div class="npc-emoji" id="npcIntroEmoji">👷</div>
+    <div class="npc-nome" id="npcIntroNome">NPC</div>
+  </div>
+  <div class="npc-fala" id="npcIntroFala">...</div>
+  <button class="npc-btn" id="npcIntroBtnOk">► OK, vamos começar!</button>
+</div>
+
+<!-- ══════════ DIÁLOGO 1 (missão) ══════════ -->
+<div id="dialogo1Box" class="dialogo-box hidden" style="border:3px solid var(--amber)">
+  <div class="dialogo-header">
+    <div class="npc-emoji" id="dialogo1Emoji">👷</div>
+    <div class="npc-nome" id="dialogo1Nome">Operador</div>
+  </div>
+  <div class="dialogo-body">
+    <div class="dialogo-fala" id="dialogo1Fala"></div>
+    <div class="dialogo-missao" id="dialogo1Missao"></div>
+    <button class="npc-btn" id="dialogo1BtnOk">► ACEITAR MISSÃO</button>
+  </div>
+</div>
+
+<!-- ══════════ DIÁLOGO 2 (ensino) ══════════ -->
+<div id="dialogo2Box" class="dialogo-box hidden" style="border:3px solid var(--verde)">
+  <div class="dialogo-header">
+    <div class="npc-emoji" id="dialogo2Emoji">👷</div>
+    <div class="npc-nome" id="dialogo2Nome">Operador</div>
+  </div>
+  <div class="dialogo-body">
+    <div class="dialogo-fala" id="dialogo2Fala"></div>
+    <div class="dialogo-item-badge">
+      <div class="dialogo-item-emoji" id="dialogo2ItemEmoji">📊</div>
+      <div>
+        <div class="dialogo-item-label" id="dialogo2ItemLabel">FERRAMENTA DESBLOQUEADA!</div>
+        <div class="dialogo-formula" id="dialogo2Formula"></div>
+      </div>
+    </div>
+    <button class="npc-btn" id="dialogo2BtnOk" style="background:var(--verde)">► CONTINUAR</button>
+  </div>
+</div>
+
+<!-- ══════════ ITEM BADGE ══════════ -->
+<div id="itemBadge" class="hidden" style="border:4px solid var(--roxo)">
+  <span class="badge-emoji" id="badgeEmoji">📊</span>
+  <span class="badge-label" id="badgeLabel">FERRAMENTA</span>
+  <div class="badge-formula" id="badgeFormula"></div>
 </div>
 
 <!-- ══════════ QUIZ ══════════ -->
 <div class="screen hidden" id="quizScreen">
   <div class="quiz-box">
     <div class="quiz-header">
-      <div class="quiz-header-title">QUIZ DA FASE</div>
+      <div class="quiz-empresa" id="quizEmpresa">QUIZ</div>
       <div class="quiz-num" id="quizNum">1/3</div>
     </div>
     <div class="quiz-body">
@@ -129,22 +162,21 @@
   </div>
 </div>
 
-<!-- ══════════ FASE COMPLETA ══════════ -->
-<div class="screen hidden" id="faseCompleta">
-  <div class="fase-box">
-    <div class="fase-header">
-      <div class="fase-title" id="faseCompletaTitulo">FASE 1 CONCLUÍDA!</div>
-      <div style="font-family:'VT323',monospace;font-size:clamp(14px,3.5vw,18px);color:rgba(0,0,0,.7);margin-top:4px;" id="faseCompletaNome"></div>
+<!-- ══════════ EMPRESA COMPLETA ══════════ -->
+<div class="screen hidden" id="empCompletaScreen">
+  <div class="emp-box">
+    <div class="emp-header">
+      <div class="emp-header-nome" id="empCompletaNome">Empresa</div>
     </div>
-    <div class="fase-body">
-      <div class="fase-belt">
-        <span class="fase-belt-emoji" id="faseBeltEmoji">💛</span>
-        <span class="fase-belt-label" id="faseBeltLabel">YELLOW BELT DESBLOQUEADO!</span>
+    <div class="emp-body">
+      <div class="emp-belt-area">
+        <span class="emp-belt-emoji" id="empCompletaBeltEmoji">💛</span>
+        <span class="emp-belt-label" id="empCompletaBeltLabel">BELT DESBLOQUEADO!</span>
       </div>
-      <pre class="fase-stats" id="faseStats"></pre>
-      <div class="fase-btns">
-        <button class="btn-pixel btn-verde" id="btnProximaFase">► PRÓXIMA FASE ◄</button>
-        <button class="btn-pixel btn-red" id="btnReplayFase">↺ REPETIR FASE</button>
+      <pre class="emp-stats" id="empCompletaStats"></pre>
+      <div class="emp-btns">
+        <button class="btn-pixel btn-verde" id="btnProxEmpresa">► PRÓXIMA EMPRESA ◄</button>
+        <button class="btn-pixel btn-red" id="btnReplayEmpresa">↺ REPETIR</button>
       </div>
     </div>
   </div>
@@ -153,9 +185,9 @@
 <!-- ══════════ GAME OVER ══════════ -->
 <div class="screen hidden" id="gameOver">
   <div class="go-title">GAME OVER</div>
-  <div class="go-sub">Você perdeu todas as vidas...<br>Mas um Black Belt nunca desiste!</div>
+  <div class="go-sub">Você perdeu todas as vidas...<br>Um Black Belt nunca desiste!</div>
   <div class="go-btns">
-    <button class="btn-pixel btn-verde" id="btnReiniciarFase">► TENTAR NOVAMENTE ◄</button>
+    <button class="btn-pixel btn-verde" id="btnReiniciarFase">► TENTAR NOVAMENTE</button>
     <button class="btn-pixel btn-red" id="btnMenuGO">↩ MENU</button>
   </div>
 </div>
@@ -163,18 +195,17 @@
 <!-- ══════════ WIN FINAL ══════════ -->
 <div class="screen hidden" id="winFinal">
   <div class="win-logo">MISSÃO CONCLUÍDA!</div>
-  <div style="font-family:'VT323',monospace;font-size:clamp(16px,4vw,24px);color:#a78bfa;margin-bottom:8px;">
-    Você se tornou um Master Black Belt Digital!
+  <div style="font-family:'VT323',monospace;font-size:clamp(16px,4vw,24px);color:var(--roxo2);margin-bottom:8px">
+    Você é agora um Master Black Belt Digital!
   </div>
   <div class="win-box">
-    <div style="font-family:'VT323',monospace;font-size:clamp(16px,4vw,22px);color:#eaedf5;line-height:2.1;margin-bottom:12px;">
-      ► TOTAL DE ITENS: <span id="winTotalItens" style="color:#27c97c;"></span><br>
-      ► TEMPO TOTAL: <span id="winTotalTempo" style="color:#f0a832;"></span><br>
+    <div style="font-family:'VT323',monospace;font-size:clamp(15px,4vw,21px);color:var(--text);line-height:2.1">
       ► 4 EMPRESAS VISITADAS<br>
-      ► BELT: 💜 MASTER BLACK BELT
+      ► TEMPO TOTAL: <span id="winTempo" style="color:var(--amber)"></span><br>
+      ► BELT: 💜 MASTER BLACK BELT<br>
+      ► FERRAMENTAS DOMINADAS:
     </div>
-    <div style="font-size:clamp(7px,2vw,10px);color:#a78bfa;margin-bottom:8px;">FERRAMENTAS DOMINADAS:</div>
-    <div class="win-items" id="winItemsGrid"></div>
+    <div class="win-tools" id="winTools"></div>
   </div>
   <button class="btn-pixel" onclick="location.reload()">► JOGAR NOVAMENTE ◄</button>
 </div>
@@ -190,37 +221,11 @@
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="js/data.js"></script>
 <script src="js/engine.js"></script>
 <script src="js/ui.js"></script>
 <script>
-// ══════════════════════════════════════════
-// INPUT
-// ══════════════════════════════════════════
-document.addEventListener('keydown',function(e){
-  keys[e.key]=true;
-  if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
-});
-document.addEventListener('keyup',function(e){ keys[e.key]=false; });
-
-function setupMbBtn(id,key){
-  var el=document.getElementById(id);
-  function down(e){ e.preventDefault(); mob[key]=true; el.classList.add('pressed'); }
-  function up(e){ e.preventDefault(); mob[key]=false; el.classList.remove('pressed'); if(key==='jump') mob.jump=false; }
-  el.addEventListener('touchstart',down,{passive:false});
-  el.addEventListener('touchend',up,{passive:false});
-  el.addEventListener('touchcancel',function(){ mob[key]=false; el.classList.remove('pressed'); },{passive:false});
-  el.addEventListener('mousedown',function(e){ e.preventDefault(); mob[key]=true; el.classList.add('pressed'); });
-  el.addEventListener('mouseup',function(){ mob[key]=false; el.classList.remove('pressed'); });
-}
-setupMbBtn('btnLeft','left');
-setupMbBtn('btnRight','right');
-setupMbBtn('btnJump','jump');
-
-// ══════════════════════════════════════════
-// STARS
-// ══════════════════════════════════════════
+// ══ STARS ══
 (function(){
   var c=document.getElementById('starsContainer');
   for(var i=0;i<90;i++){
@@ -231,31 +236,40 @@ setupMbBtn('btnJump','jump');
   }
 })();
 
-// ══════════════════════════════════════════
-// START
-// ══════════════════════════════════════════
+// ══ INPUT TECLADO ══
+document.addEventListener('keydown',function(e){
+  keys[e.key]=true;
+  if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+});
+document.addEventListener('keyup',function(e){ keys[e.key]=false; });
+
+// ══ INPUT MOBILE ══
+function setupMb(id,key){
+  var el=document.getElementById(id);
+  function dn(e){e.preventDefault();mob[key]=true;el.classList.add('pressed');}
+  function up(e){e.preventDefault();mob[key]=false;el.classList.remove('pressed');if(key==='jump')mob.jump=false;}
+  el.addEventListener('touchstart',dn,{passive:false});
+  el.addEventListener('touchend',up,{passive:false});
+  el.addEventListener('touchcancel',function(){mob[key]=false;el.classList.remove('pressed');},{passive:false});
+  el.addEventListener('mousedown',function(e){e.preventDefault();mob[key]=true;el.classList.add('pressed');});
+  el.addEventListener('mouseup',function(){mob[key]=false;el.classList.remove('pressed');});
+}
+setupMb('btnLeft','left');
+setupMb('btnRight','right');
+setupMb('btnJump','jump');
+
+// ══ START ══
 document.getElementById('btnStart').addEventListener('click',function(){
   document.getElementById('startScreen').classList.add('hidden');
   document.getElementById('hud').classList.remove('hidden');
   document.getElementById('mobileCtrl').classList.remove('hidden');
-
-  player.faseAtual=0;
-  player.beltAtual=0;
   player.vidas=3;
+  player.beltIdx=0;
+  player.toolsColetadas=[];
   player.tempoTotal=0;
-
-  buildWorld(0);
-  updateHUDFase();
-  updateHUDProgress();
+  updateHUDMundo();
   updateHUDVidas();
-
-  gameState='playing';
-  paused=true;
-
-  // NPC intro após 600ms
-  setTimeout(function(){ showNPCDialog(0); },600);
-
-  startLoop();
+  startGame();
 });
 </script>
 </body>
