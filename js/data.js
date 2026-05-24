@@ -1,380 +1,452 @@
 // ═══════════════════════════════════════════
-// QUALITY QUEST — DATA
-// Fases, itens, quizzes, NPCs, belts
+// QUALITY QUEST v2 — DATA
+// Empresas, operadores, missões, ferramentas
 // ═══════════════════════════════════════════
 
 var BELTS = [
-  { id:'white',  label:'White Belt',  cor:'#f1efe8', emoji:'🤍', min:0  },
-  { id:'yellow', label:'Yellow Belt', cor:'#f0a832', emoji:'💛', min:1  },
-  { id:'green',  label:'Green Belt',  cor:'#27c97c', emoji:'💚', min:2  },
-  { id:'black',  label:'Black Belt',  cor:'#1a1a2e', emoji:'🖤', min:3  },
-  { id:'master', label:'Master BB',   cor:'#7c3aed', emoji:'💜', min:4  },
+  { id:'white',  label:'White Belt',  cor:'#d6d3c8', emoji:'🤍' },
+  { id:'yellow', label:'Yellow Belt', cor:'#f0a832', emoji:'💛' },
+  { id:'green',  label:'Green Belt',  cor:'#27c97c', emoji:'💚' },
+  { id:'black',  label:'Black Belt',  cor:'#a78bfa', emoji:'🖤' },
+  { id:'master', label:'Master BB',   cor:'#c084fc', emoji:'💜' },
 ];
 
-var FASES = [
-  // ═══════ FASE 1 — ESCRITÓRIO / GENÉRICA ═══════
-  {
-    id: 'escritorio',
-    nome: 'Fase 1 — O Escritório',
-    empresa: 'Empresa Genérica S.A.',
-    belt: 'White Belt',
-    beltCor: '#f1efe8',
-    bgTop: '#0d0d1a',
-    bgBot: '#1a1024',
-    chaoColor: '#2a2040',
-    chaoTop: '#6b5fa0',
-    platColor: '#3d3060',
-    platTop: '#8b7cc8',
-    descricao: 'Bem-vindo ao escritório! Aqui você aprende as metodologias base da qualidade. Conheça o DMAIC, o Kaizen e o Kanban — as ferramentas que organizam a melhoria.',
-    npc: {
-      nome: 'Gerente Silva',
-      fala: 'Filho, aqui a gente trabalha no escuro sem dados. Aprenda essas metodologias e salve essa empresa!',
-      emoji: '👔'
-    },
-    inimigos: [],
-    itens: [
-      {
-        id:'dmaic', emoji:'⚙️', cor:'#4b8ef0', label:'DMAIC',
-        nome:'DMAIC — O Framework do Six Sigma',
-        empresa:'Motorola, 1986',
-        texto:'Criado na Motorola e popularizado pela GE com Jack Welch. DMAIC é a estrutura que transforma problemas crônicos em melhorias permanentes através de 5 fases rigorosas.',
-        fases:[
-          '► DEFINIR: qual é o problema? Qual o impacto no cliente?',
-          '► MEDIR: qual é o estado atual do processo com dados reais?',
-          '► ANALISAR: quais são as causas-raiz do problema?',
-          '► MELHORAR: quais soluções eliminam as causas-raiz?',
-          '► CONTROLAR: como garantir que não vamos regredir?'
-        ],
-        formula: 'D → M → A → I → C',
-        dica:'A GE economizou US$ 10 bilhões nos primeiros 5 anos usando DMAIC.'
-      },
-      {
-        id:'kaizen', emoji:'🔄', cor:'#27c97c', label:'KAIZEN',
-        nome:'KAIZEN — Melhoria Contínua',
-        empresa:'Toyota, Japão, 1950s',
-        texto:'Do japonês "kai" (mudança) + "zen" (bom). Filosofia que prega melhorias pequenas e diárias feitas por TODOS os colaboradores — do CEO ao operador. Não espera grandes projetos.',
-        fases:[
-          '► Toda pessoa é um especialista no seu próprio trabalho',
-          '► Melhorias pequenas diárias superam grandes mudanças raras',
-          '► Foco em eliminar MUDA (desperdício) em 8 tipos',
-          '► Eventos Kaizen: times focados por 3-5 dias num problema',
-          '► Resultados imediatos, sustentados pela cultura'
-        ],
-        formula: 'Hoje > Ontem → Amanhã > Hoje',
-        dica:'Toyota recebe mais de 700.000 sugestões de melhoria por ano dos funcionários.'
-      },
-      {
-        id:'kanban', emoji:'📋', cor:'#f0a832', label:'KANBAN',
-        nome:'KANBAN — Gestão Visual do Fluxo',
-        empresa:'Toyota, Taiichi Ohno, 1953',
-        texto:'Sistema visual que limita o trabalho em progresso (WIP) para revelar gargalos e manter fluxo contínuo. Criado por Taiichi Ohno inspirado nos supermercados americanos.',
-        fases:[
-          '► Colunas: A Fazer → Em Progresso → Concluído',
-          '► WIP Limit: máximo de tarefas simultâneas por coluna',
-          '► Pull system: só puxa nova tarefa quando há capacidade',
-          '► Métricas: Lead Time e Throughput revelam saúde do fluxo',
-          '► Kanban eletrônico: Trello, Jira, Azure DevOps'
-        ],
-        formula: 'WIP Limit = capacidade real da equipe',
-        dica:'Limitar WIP parece contra-intuitivo mas acelera a entrega — foco vence multitarefa.'
-      },
-    ],
-    quiz: [
-      {
-        pergunta: 'O que significa a letra "A" no DMAIC?',
-        opcoes: ['Aplicar', 'Analisar', 'Avaliar', 'Automatizar'],
-        correta: 1,
-        explicacao: 'A = ANALISAR as causas-raiz do problema com dados e ferramentas estatísticas.'
-      },
-      {
-        pergunta: 'KAIZEN é uma palavra japonesa que significa:',
-        opcoes: ['Trabalho duro', 'Melhoria contínua', 'Qualidade total', 'Sem desperdício'],
-        correta: 1,
-        explicacao: 'Kai = mudança, Zen = bom. Juntos: mudança para melhor, de forma contínua.'
-      },
-      {
-        pergunta: 'O Kanban foi criado inspirado em:',
-        opcoes: ['Fábricas alemãs', 'Supermercados americanos', 'Escritórios japoneses', 'Linhas de trem'],
-        correta: 1,
-        explicacao: 'Taiichi Ohno se inspirou no sistema de reposição de prateleiras dos supermercados americanos.'
-      },
-    ]
-  },
+// ══════════════════════════════════════════
+// MUNDO EXTERNO — segmentos entre fábricas
+// ══════════════════════════════════════════
+var MUNDO_EXTERNO = {
+  bgSky:    ['#87CEEB','#4a90d9','#2563a8'],  // gradiente céu ensolarado
+  bgGrass:  '#4a7c3f',
+  bgGrassTop:'#5a9a4f',
+  bgRoad:   '#6b6560',
+  bgRoadLine:'#f0d080',
+  nuvens: true,
+  pajaros: true,
+};
 
-  // ═══════ FASE 2 — FÁBRICA TOYOTA ═══════
+// ══════════════════════════════════════════
+// EMPRESAS / FASES
+// ══════════════════════════════════════════
+var EMPRESAS = [
+
+  // ═══════ 1. TOYOTA ═══════
   {
     id: 'toyota',
-    nome: 'Fase 2 — Chão de Fábrica Toyota',
-    empresa: 'Toyota Motor Corporation',
-    belt: 'Yellow Belt',
-    beltCor: '#f0a832',
-    bgTop: '#0a1208',
-    bgBot: '#0d1a10',
-    chaoColor: '#1a2a18',
-    chaoTop: '#3a6a32',
-    platColor: '#2a4828',
-    platTop: '#5a9850',
-    descricao: 'Bem-vindo à fábrica da Toyota em Toyota City! Aqui nascem o CEP, o Histograma e o Pareto — ferramentas que monitoram e priorizam a qualidade no chão de fábrica.',
-    npc: {
-      nome: 'Sensei Ohno',
-      fala: 'Vá ao gemba — o chão de fábrica! Os dados vivem lá, não nos relatórios. Aprenda a ver o que os números dizem!',
-      emoji: '🏭'
+    nome: 'Toyota Motor Corporation',
+    pais: 'Toyota City, Japão — 1937',
+    descricao: 'Berço do Sistema Toyota de Produção (TPS), Kaizen e Kanban. A Toyota revolucionou a manufatura mundial com o conceito de eliminação de desperdícios e melhoria contínua.',
+    fatos: ['Recebe 700.000 sugestões/ano dos funcionários', 'Criou o Just-in-Time e o Kanban', 'TPS é a base do Lean Manufacturing'],
+    emojiFabrica: '🚗',
+    belt: 0,
+    beltLabel: 'White Belt',
+
+    // Visual interior
+    bgTop:    '#0a1208',
+    bgBot:    '#0d1a0f',
+    chaoColor:'#1a2818',
+    chaoTop:  '#2a5020',
+    platColor:'#243820',
+    platTop:  '#4a8040',
+    corAcento:'#27c97c',
+
+    // Placa externa
+    placa: {
+      titulo: '🏭 TOYOTA MOTOR',
+      sub1:   'Toyota City, Japão — 1937',
+      sub2:   'Berço do Kaizen e Kanban',
+      cor:    '#27c97c',
     },
-    inimigos: [
-      { tipo:'refugo', emoji:'⚠️', label:'Refugo', velocidade:1.2 },
-      { tipo:'defeito', emoji:'❌', label:'Defeito', velocidade:1.8 },
-    ],
-    itens: [
+
+    // Operadores dentro da fábrica
+    operadores: [
       {
-        id:'cep', emoji:'📉', cor:'#e8455a', label:'CEP/SPC',
-        nome:'CEP — Controle Estatístico de Processo',
-        empresa:'Walter Shewhart, Bell Labs, 1924',
-        texto:'Desenvolvido por Walter Shewhart na Bell Labs e popularizado por W. Edwards Deming no Japão. As cartas de controle distinguem variação normal (causas comuns) de anomalias que exigem ação (causas especiais).',
-        fases:[
-          '► Carta Xbar-R: monitora média e amplitude de subgrupos',
-          '► Carta I-MR: monitora valores individuais',
-          '► LCS e LCI: Limites de Controle Superior e Inferior (±3σ)',
-          '► Regras de Nelson: 8 padrões que detectam causas especiais',
-          '► Processo estável ≠ processo capaz — ambos devem ser garantidos'
-        ],
-        formula: 'LC ± 3σ → LCS e LCI',
-        dica:'Deming ensinou CEP no Japão em 1950. É por isso que o "Made in Japan" virou sinônimo de qualidade.'
+        id: 'tanaka',
+        nome: 'Tanaka-san',
+        cargo: 'Lider de Linha',
+        emoji: '👷',
+        corUniforme: '#2a5020',
+        x: 500,
+        acao: 'montando',  // animação
+        dialogo1: 'Konnichiwa! Sou Tanaka, lider desta linha de montagem. Aqui na Toyota, cada operador é responsável pela qualidade do seu processo.',
+        missao: 'Ajude-me a organizar o quadro Kanban! Colete as 3 fichas de tarefa espalhadas pela linha.',
+        dialogo2: 'Perfeito! O KANBAN nasceu aqui na Toyota. Taiichi Ohno se inspirou nos supermercados americanos — repõe só o que foi consumido. WIP Limit evita sobrecarga!',
+        itemEnsinado: 'kanban',
       },
       {
-        id:'histo', emoji:'📊', cor:'#27c97c', label:'HISTOGRAMA',
-        nome:'Histograma — Distribuição de Dados',
-        empresa:'Karl Pearson, 1895',
-        texto:'Criado pelo estatístico Karl Pearson. O histograma revela a FORMA da distribuição dos dados — algo que médias e desvios-padrão sozinhos não mostram. É a radiografia do processo.',
-        fases:[
-          '► Distribuição Normal (sino): processo centrado e estável',
-          '► Assimétrica à direita: outliers altos, investigar causas',
-          '► Bimodal (2 picos): duas populações misturadas — 2 turnos? 2 máquinas?',
-          '► Truncada: dados sendo removidos manualmente — suspeito!',
-          '► Nº de classes: regra de Sturges = 1 + 3.322 × log₁₀(n)'
-        ],
-        formula: 'Classes = 1 + 3.322 × log₁₀(n)',
-        dica:'Um histograma bimodal é o maior alerta: dois processos diferentes estão sendo tratados como um.'
+        id: 'yuki',
+        nome: 'Yuki',
+        cargo: 'Analista de Processo',
+        emoji: '👩‍🔧',
+        corUniforme: '#1a4010',
+        x: 1400,
+        acao: 'inspecionando',
+        dialogo1: 'Oi! Sou Yuki. Estou monitorando as melhorias diárias aqui na linha B. Na Toyota, qualquer operador pode parar a linha se encontrar um problema — isso é Kaizen!',
+        missao: 'Identifique os 3 desperdícios escondidos nessa área. Procure as placas vermelhas de MUDA!',
+        dialogo2: 'Excelente! KAIZEN significa melhoria contínua. Pequenas melhorias diárias de TODOS superam grandes projetos raros. A Toyota recebe 700.000 sugestões por ano!',
+        itemEnsinado: 'kaizen',
       },
       {
-        id:'pareto', emoji:'📋', cor:'#f0a832', label:'PARETO',
-        nome:'Pareto — O Princípio 80/20',
-        empresa:'Vilfredo Pareto → Joseph Juran, 1940s',
-        texto:'Vilfredo Pareto descobriu que 80% da terra italiana pertencia a 20% da população. Joseph Juran aplicou o princípio à qualidade: 80% dos defeitos vêm de 20% das causas — os "vitais poucos".',
-        fases:[
-          '► Coleta: lista de defeitos com frequência ou custo',
-          '► Ordenação: do maior para o menor',
-          '► Acumulação: percentual acumulado em linha secundária',
-          '► Vitais poucos: causas até ~80% do acumulado',
-          '► Ação: resolver os 2-3 primeiros itens antes dos demais'
-        ],
-        formula: '20% das causas → 80% dos efeitos',
-        dica:'Não tente resolver tudo de uma vez. O Pareto diz onde focar para máximo impacto com mínimo esforço.'
+        id: 'ohno_npc',
+        nome: 'Sensei Ohno',
+        cargo: 'Fundador do TPS',
+        emoji: '🧓',
+        corUniforme: '#0d2010',
+        x: 2400,
+        acao: 'observando',
+        dialogo1: 'Eu sou Taiichi Ohno. Criei o Sistema Toyota de Produção. A essência é simples: vá ao GEMBA — o chão de fábrica — e elimine tudo que não agrega valor ao cliente.',
+        missao: 'Complete o mapa DMAIC coletando as 5 letras espalhadas pela fábrica!',
+        dialogo2: 'DMAIC: Definir, Medir, Analisar, Melhorar, Controlar. Este framework, combinado com o TPS, é o que a GE usou para economizar US$ 10 bilhões em 5 anos!',
+        itemEnsinado: 'dmaic',
       },
     ],
+
+    // Elementos visuais da fábrica
+    elementos: [
+      { tipo:'esteira', x:300,  label:'Linha A — Montagem' },
+      { tipo:'esteira', x:1200, label:'Linha B — Inspeção' },
+      { tipo:'maquina', x:800,  label:'Robô Solda' },
+      { tipo:'kanban_board', x:600, label:'Quadro Kanban' },
+      { tipo:'paleteira', x:1800, velocidade:1.2 },
+      { tipo:'carro_montagem', x:400 },
+    ],
+
     quiz: [
       {
-        pergunta: 'No CEP, o que significa LCS?',
-        opcoes: ['Limite de Controle Seletivo', 'Limite de Controle Superior', 'Linha Central Sigma', 'Limite de Conformidade Superior'],
+        pergunta: 'O KANBAN foi criado inspirado em qual sistema?',
+        opcoes: ['Fábricas alemãs', 'Supermercados americanos', 'Escritórios japoneses', 'Linhas de trem'],
         correta: 1,
-        explicacao: 'LCS = Limite de Controle Superior = LC + 3σ. Qualquer ponto acima indica causa especial.'
+        explicacao: 'Taiichi Ohno observou que supermercados repõem prateleiras só quando o produto é consumido — o mesmo princípio do pull system.'
       },
       {
-        pergunta: 'Um histograma com 2 picos (bimodal) indica:',
-        opcoes: ['Processo excelente', 'Duas populações misturadas', 'Dados insuficientes', 'Processo centrado'],
+        pergunta: 'KAIZEN significa:',
+        opcoes: ['Trabalho em equipe', 'Melhoria contínua', 'Eliminação de desperdício', 'Qualidade total'],
         correta: 1,
-        explicacao: 'Bimodal = dois grupos misturados. Ex: turno A e turno B com comportamentos diferentes.'
+        explicacao: 'Kai = mudança, Zen = bom/melhor. Juntos: mudança para melhor, de forma contínua e incremental.'
       },
       {
-        pergunta: 'O Princípio de Pareto diz que aproximadamente:',
-        opcoes: ['50% das causas geram 50% dos efeitos', '80% das causas geram 20% dos efeitos', '20% das causas geram 80% dos efeitos', '100% das causas têm igual importância'],
+        pergunta: 'No DMAIC, o que significa a letra "A"?',
+        opcoes: ['Aplicar', 'Avaliar', 'Analisar', 'Atualizar'],
         correta: 2,
-        explicacao: '20% das causas (vitais poucos) geram 80% dos problemas. Foque nelas primeiro.'
+        explicacao: 'A = Analisar as causas-raiz com dados. É a fase onde as ferramentas estatísticas entram em ação.'
       },
-    ]
+    ],
   },
 
-  // ═══════ FASE 3 — LABORATÓRIO 3M ═══════
+  // ═══════ 2. 3M ═══════
   {
     id: '3m',
-    nome: 'Fase 3 — Laboratório 3M',
-    empresa: '3M Company — Minnesota',
-    belt: 'Green Belt',
-    beltCor: '#27c97c',
-    bgTop: '#080a18',
-    bgBot: '#0a0d28',
-    chaoColor: '#10143a',
-    chaoTop: '#2040a0',
-    platColor: '#182060',
-    platTop: '#4060d0',
-    descricao: 'Bem-vindo ao laboratório de inovação da 3M em Minnesota! Aqui você aprende Capabilidade, ANOVA e Gage R&R — as ferramentas que garantem que o produto sai certo desde o primeiro.',
-    npc: {
-      nome: 'Dra. Chen',
-      fala: 'Na 3M desenvolvemos mais de 60.000 produtos. Sem Capabilidade e ANOVA, seria impossível garantir qualidade em escala. Vamos aprender!',
-      emoji: '🔬'
+    nome: '3M Company',
+    pais: 'Minnesota, EUA — 1902',
+    descricao: 'Com mais de 60.000 produtos, a 3M é referência em inovação e controle de qualidade. O CEP e o Histograma são fundamentais para garantir a consistência de produtos como fitas adesivas, Post-its e muito mais.',
+    fatos: ['60.000+ produtos em catálogo', 'Post-it nasceu de um adesivo "que não colava direito"', 'Referência mundial em controle estatístico de processo'],
+    emojiFabrica: '🏭',
+    belt: 1,
+    beltLabel: 'Yellow Belt',
+
+    bgTop:    '#080a18',
+    bgBot:    '#0a0c20',
+    chaoColor:'#10143a',
+    chaoTop:  '#1828a0',
+    platColor:'#141860',
+    platTop:  '#3050c0',
+    corAcento:'#4b8ef0',
+
+    placa: {
+      titulo: '🏭 3M COMPANY',
+      sub1:   'Minnesota, EUA — 1902',
+      sub2:   '60.000+ produtos com qualidade',
+      cor:    '#4b8ef0',
     },
-    inimigos: [
-      { tipo:'variacao', emoji:'📈', label:'Variação', velocidade:2.0 },
-      { tipo:'outlier',  emoji:'💥', label:'Outlier',  velocidade:2.5 },
-    ],
-    itens: [
+
+    operadores: [
       {
-        id:'cpk', emoji:'📊', cor:'#a78bfa', label:'Cp / Cpk',
-        nome:'Capabilidade — Cp e Cpk',
-        empresa:'Conceito desenvolvido nos anos 1970-80',
-        texto:'Índices que respondem a pergunta: o processo consegue produzir DENTRO das especificações do cliente de forma consistente? Cp mede potencial. Cpk mede performance real considerando o centramento.',
-        fases:[
-          '► Cp: largura da especificação / variabilidade do processo (6σ)',
-          '► Cpk: considera se o processo está centralizado entre LSE e LIE',
-          '► Cp < 1.0: processo incapaz — vai produzir defeitos',
-          '► Cp ≥ 1.33: capaz — padrão mínimo da indústria automotiva',
-          '► Cp ≥ 1.67: excelente — Six Sigma level'
-        ],
-        formula: 'Cpk = min[(LSE-μ)/3σ , (μ-LIE)/3σ]',
-        dica:'Cp alto com Cpk baixo = processo variável mas descentrado. Ajuste a média antes de reduzir variação.'
+        id: 'maria',
+        nome: 'Maria Silva',
+        cargo: 'Inspetora de Qualidade',
+        emoji: '👩‍🏭',
+        corUniforme: '#141860',
+        x: 500,
+        acao: 'inspecionando_fita',
+        dialogo1: 'Olá! Sou Maria, inspetora de qualidade aqui na linha de fitas. Medimos a espessura de cada lote produzido e monitoramos tudo em tempo real com cartas de controle.',
+        missao: 'Colete as 3 amostras de fita espalhadas na linha e traga para eu medir!',
+        dialogo2: 'Com os dados das amostras plotamos o CEP — Controle Estatístico de Processo. Se um ponto sair dos limites LCS ou LCI, paramos a linha imediatamente. Criado por Shewhart em 1924!',
+        itemEnsinado: 'cep',
       },
       {
-        id:'anova', emoji:'📈', cor:'#4b8ef0', label:'ANOVA',
-        nome:'ANOVA — Análise de Variância',
-        empresa:'Ronald Fisher, 1921',
-        texto:'Desenvolvida por Ronald Fisher para experimentos agrícolas. Testa se há diferença estatisticamente significativa entre 3 ou mais grupos. Separa a variação ENTRE grupos da variação DENTRO dos grupos.',
-        fases:[
-          '► H0 (nula): todos os grupos têm a mesma média',
-          '► H1 (alternativa): pelo menos um grupo é diferente',
-          '► Estatística F: razão da variância entre/dentro grupos',
-          '► p-valor < 0.05: rejeita H0 — diferença é real (95% confiança)',
-          '► Post-hoc (Tukey): identifica QUAIS grupos diferem entre si'
-        ],
-        formula: 'F = Variância Entre Grupos / Variância Dentro dos Grupos',
-        dica:'p < 0.05 significa: há menos de 5% de chance dessa diferença ser acaso.'
+        id: 'carlos',
+        nome: 'Carlos Mendes',
+        cargo: 'Analista Estatístico',
+        emoji: '👨‍💻',
+        corUniforme: '#0d1450',
+        x: 1500,
+        acao: 'digitando',
+        dialogo1: 'E aí! Sou Carlos. Faço análise estatística dos dados de produção. O histograma é minha ferramenta favorita — ele mostra a FORMA da distribuição, não só média e desvio.',
+        missao: 'Ajude-me a coletar os 3 pontos de dados dessa corrida de produção!',
+        dialogo2: 'Perfeito! Com esses dados vejo se a distribuição é normal, bimodal ou assimétrica. Um histograma bimodal me diz que há duas populações misturadas — talvez dois turnos diferentes!',
+        itemEnsinado: 'histograma',
       },
       {
-        id:'grr', emoji:'📏', cor:'#e8455a', label:'GAGE R&R',
-        nome:'Gage R&R — Sistema de Medição (MSA)',
-        empresa:'AIAG — Indústria Automotiva',
-        texto:'Antes de confiar nos dados, você precisa confiar no instrumento de medição! Gage R&R separa a variação total em: variação do produto (boa) vs variação do sistema de medição (ruim).',
-        fases:[
-          '► Repeatability (R): mesmo operador, mesmo instrumento — varia?',
-          '► Reproducibility (R): operadores diferentes — variam entre si?',
-          '► %GRR < 10%: sistema de medição aceitável',
-          '► %GRR 10-30%: aceitável dependendo do contexto',
-          '► %GRR > 30%: sistema de medição inadequado — investigar'
-        ],
-        formula: '%GRR = (σ_medição / σ_total) × 100',
-        dica:'Se o Gage R&R for ruim, toda análise estatística baseada nesses dados é suspeita. Comece sempre pelo MSA.'
+        id: 'roberto',
+        nome: 'Roberto',
+        cargo: 'Operador de Paleteira',
+        emoji: '🧑‍🏭',
+        corUniforme: '#1a2060',
+        x: 2300,
+        acao: 'paleteira',
+        dialogo1: 'Fala! Aqui eu movo os pallets de produto acabado para expedição. Todo lote passa por inspeção final com Pareto — a gente ataca os maiores problemas primeiro!',
+        missao: 'Encontre os 3 defeitos marcados nessa área de expedição!',
+        dialogo2: 'Isso! Pareto 80/20: 80% dos defeitos vêm de 20% das causas. Na nossa linha eram só 2 problemas gerando 78% das reclamações. Resolvendo esses 2, o resto some quase sozinho!',
+        itemEnsinado: 'pareto',
       },
     ],
+
+    elementos: [
+      { tipo:'esteira_fita', x:200,  label:'Linha Fita Adesiva' },
+      { tipo:'esteira_fita', x:1100, label:'Linha Post-it' },
+      { tipo:'maquina',      x:700,  label:'Extrusora EX-04' },
+      { tipo:'paleteira',    x:1900, velocidade:1.0 },
+      { tipo:'grafico_cep',  x:900,  label:'Carta de Controle' },
+      { tipo:'operador_linha', x:350,  acao:'embalando' },
+      { tipo:'operador_linha', x:1300, acao:'inspecionando' },
+    ],
+
     quiz: [
       {
-        pergunta: 'Um Cpk de 1.2 indica que o processo é:',
-        opcoes: ['Excelente — Six Sigma', 'Capaz mas abaixo do ideal industrial', 'Incapaz — produzindo defeitos', 'Centrado mas variável'],
+        pergunta: 'No CEP, LCS e LCI representam:',
+        opcoes: ['Limite de Confiança Superior/Inferior', 'Limite de Controle Superior/Inferior', 'Linha Central Superior/Inferior', 'Limite de Calibração do Sistema'],
         correta: 1,
-        explicacao: 'Cpk 1.2 > 1.0 (capaz) mas < 1.33 (padrão automotivo). Aceitável em alguns contextos, mas há espaço para melhoria.'
+        explicacao: 'LCS = Limite de Controle Superior (LC + 3σ) e LCI = Limite de Controle Inferior (LC - 3σ). Pontos fora indicam causa especial.'
       },
       {
-        pergunta: 'Na ANOVA, um p-valor de 0.03 significa:',
-        opcoes: ['Não há diferença entre os grupos', 'Diferença real com 97% de confiança', 'Amostra insuficiente', 'Erro no cálculo'],
+        pergunta: 'Um histograma BIMODAL (2 picos) indica:',
+        opcoes: ['Processo excelente e bem centrado', 'Duas populações misturadas no mesmo gráfico', 'Dados insuficientes para análise', 'Processo com alta variabilidade normal'],
         correta: 1,
-        explicacao: 'p = 0.03 < 0.05: rejeita H0. Há diferença estatisticamente significativa com 97% de confiança.'
+        explicacao: 'Dois picos = dois grupos diferentes sendo tratados como um. Ex: turno A e turno B com ajustes diferentes na máquina.'
       },
       {
-        pergunta: 'Um %GRR de 35% indica:',
-        opcoes: ['Sistema de medição excelente', 'Sistema de medição aceitável', 'Sistema de medição inadequado', 'Processo fora de controle'],
+        pergunta: 'O Princípio de Pareto aplicado à qualidade diz:',
+        opcoes: ['Todos os defeitos têm igual importância', '50% das causas geram 50% dos efeitos', '20% das causas geram 80% dos defeitos', '100% das causas devem ser eliminadas'],
         correta: 2,
-        explicacao: '%GRR > 30% indica que o instrumento ou operadores introduzem variação excessiva. O sistema precisa ser melhorado antes de confiar nos dados.'
+        explicacao: 'Os "vitais poucos" — 20% das causas — geram 80% dos problemas. Foque neles primeiro para máximo impacto com mínimo esforço.'
       },
-    ]
+    ],
   },
 
-  // ═══════ FASE 4 — MOTOROLA / BLACK BELT ═══════
+  // ═══════ 3. BELL LABS (SHEWHART) ═══════
   {
-    id: 'motorola',
-    nome: 'Fase 4 — Centro de Excelência Motorola',
-    empresa: 'Motorola — Berço do Six Sigma',
-    belt: 'Black Belt',
-    beltCor: '#a78bfa',
-    bgTop: '#120a0a',
-    bgBot: '#1a0d0d',
-    chaoColor: '#2a1010',
-    chaoTop: '#8a3030',
-    platColor: '#3a1818',
-    platTop: '#c04040',
-    descricao: 'Você chegou à Motorola — onde o Six Sigma nasceu em 1986! Esta é a fase mais desafiadora. Aprenda DOE, Lead Time e ROI para se tornar um Black Belt completo.',
-    npc: {
-      nome: 'Bill Smith',
-      fala: 'Eu criei o Six Sigma aqui na Motorola em 1986. A meta é clara: menos de 3.4 defeitos por milhão de oportunidades. Você está pronto?',
-      emoji: '🏆'
+    id: 'belllabs',
+    nome: 'Bell Telephone Laboratories',
+    pais: 'Murray Hill, EUA — 1925',
+    descricao: 'Walter Shewhart desenvolveu aqui as cartas de controle e o ciclo PDCA em 1924. Os Bell Labs produziram mais de 30.000 patentes e 9 Prêmios Nobel. É o laboratório mais inovador da história.',
+    fatos: ['Walter Shewhart criou o CEP em 1924', 'W. Edwards Deming aprendeu com Shewhart aqui', 'O transistor foi inventado aqui em 1947'],
+    emojiFabrica: '🔬',
+    belt: 2,
+    beltLabel: 'Green Belt',
+
+    bgTop:    '#0a080a',
+    bgBot:    '#150d20',
+    chaoColor:'#1a1028',
+    chaoTop:  '#503080',
+    platColor:'#281840',
+    platTop:  '#8050c0',
+    corAcento:'#a78bfa',
+
+    placa: {
+      titulo: '🔬 BELL LABS',
+      sub1:   'Murray Hill, EUA — 1925',
+      sub2:   'Onde o CEP foi criado em 1924',
+      cor:    '#a78bfa',
     },
-    inimigos: [
-      { tipo:'refugo',   emoji:'⚠️', label:'Refugo',   velocidade:2.2 },
-      { tipo:'defeito',  emoji:'❌', label:'Defeito',   velocidade:2.8 },
-      { tipo:'variacao', emoji:'📈', label:'Variação',  velocidade:3.0 },
-    ],
-    itens: [
+
+    operadores: [
       {
-        id:'doe', emoji:'🧪', cor:'#f0a832', label:'DOE',
-        nome:'DOE — Planejamento de Experimentos',
-        empresa:'Ronald Fisher → Box, Hunter, 1978',
-        texto:'Design of Experiments permite testar múltiplos fatores simultaneamente com o mínimo de experimentos possível. Em vez de testar um fator por vez, o DOE revela interações que experimentos isolados jamais detectariam.',
-        fases:[
-          '► Fatorial 2k: k fatores em 2 níveis (alto/baixo) = 2k corridas',
-          '► Efeito principal: impacto individual de cada fator',
-          '► Interação: quando o efeito de A depende do nível de B',
-          '► Combinação ótima: maximiza ou minimiza a resposta',
-          '► Screening: elimina fatores não significativos antes do DOE completo'
-        ],
-        formula: 'Corridas = 2k (fatorial completo)',
-        dica:'Um DOE 2³ (3 fatores) testa 8 combinações e revela efeitos que 24 experimentos isolados não revelariam.'
+        id: 'shewhart_npc',
+        nome: 'Walter Shewhart',
+        cargo: 'Físico e Pai do CEP',
+        emoji: '👨‍🔬',
+        corUniforme: '#281840',
+        x: 600,
+        acao: 'plotando_grafico',
+        dialogo1: 'Bem-vindo ao Bell Labs! Sou Walter Shewhart. Em 1924 descobri que processos têm dois tipos de variação: causas comuns (normais) e causas especiais (anomalias que precisam de ação).',
+        missao: 'Colete as 3 amostras de medição para plotarmos uma carta de controle juntos!',
+        dialogo2: 'Com esses dados calculamos: LC (média), LCS (LC + 3σ) e LCI (LC - 3σ). Qualquer ponto fora = investigar imediatamente. Deming levou isso ao Japão em 1950 e mudou o mundo!',
+        itemEnsinado: 'cep',
       },
       {
-        id:'lead', emoji:'⏱️', cor:'#27c97c', label:'LEAD TIME',
-        nome:'Lead Time — Tempo de Ciclo e Eficiência',
-        empresa:'Lean Manufacturing — Toyota Production System',
-        texto:'Lead Time é o tempo total desde o pedido do cliente até a entrega. Composto por Tempo de Valor Agregado (VA) e Tempo de Não Valor Agregado (NVA). A eficiência típica de processos é de apenas 5-30%!',
-        fases:[
-          '► Lead Time total = VA + NVA (esperas, filas, transporte)',
-          '► Eficiência = Tempo VA / Lead Time total × 100%',
-          '► Value Stream Map: visualiza todo o fluxo e identifica desperdícios',
-          '► 8 Desperdícios LEAN: transporte, inventário, movimento, espera, superprodução, superprocessamento, defeitos, talento',
-          '► Meta: aumentar %VA eliminando etapas NVA'
-        ],
-        formula: 'Eficiência = (Tempo VA / Lead Time) × 100%',
-        dica:'Na maioria dos processos, menos de 10% do tempo é realmente valor agregado. Os outros 90% são desperdício eliminável.'
+        id: 'ana_lab',
+        nome: 'Dra. Ana Chen',
+        cargo: 'Engenheira de Qualidade',
+        emoji: '👩‍🔬',
+        corUniforme: '#1e1030',
+        x: 1600,
+        acao: 'medindo',
+        dialogo1: 'Oi! Sou a Dra. Ana. Trabalho com análise de capabilidade — verifico se o processo consegue produzir DENTRO das especificações do cliente de forma consistente.',
+        missao: 'Meça os 3 componentes nessa bancada e traga os resultados!',
+        dialogo2: 'Com essas medidas calculo o Cpk! Se Cpk ≥ 1.33 o processo é capaz. Se Cp é alto mas Cpk baixo, o processo é variável mas descentrado — precisamos ajustar a média primeiro.',
+        itemEnsinado: 'cpk',
       },
       {
-        id:'roi', emoji:'💰', cor:'#a78bfa', label:'ROI',
-        nome:'ROI — Retorno sobre o Investimento',
-        empresa:'Conceito financeiro aplicado à Qualidade',
-        texto:'Todo projeto Six Sigma precisa ser justificado financeiramente. ROI quantifica o retorno gerado pelo projeto em relação ao investimento realizado. É o que convence a diretoria a aprovar e continuar financiando projetos.',
-        fases:[
-          '► Ganho anual: redução de refugo + retrabalho + reclamações + horas',
-          '► Investimento: horas do time + consultoria + equipamentos + treinamento',
-          '► ROI = (Ganho - Investimento) / Investimento × 100%',
-          '► Payback: em quantos meses o investimento se paga',
-          '► Hard savings vs Soft savings: contabilize só o que pode provar'
-        ],
-        formula: 'ROI = (Ganho Anual - Investimento) / Investimento × 100%',
-        dica:'Um projeto Six Sigma bem conduzido retorna em média 10x o investimento. Documente tudo para comprovar o saving.'
+        id: 'roy_fisher',
+        nome: 'Prof. Roy',
+        cargo: 'Estatístico Sênior',
+        emoji: '🧑‍🏫',
+        corUniforme: '#201540',
+        x: 2500,
+        acao: 'explicando',
+        dialogo1: 'Olá! Sou especialista em ANOVA — Análise de Variância. Desenvolvida por Ronald Fisher em 1921, ela responde: há diferença real entre esses grupos ou é só acaso?',
+        missao: 'Colete os dados dos 3 grupos de teste espalhados pelo laboratório!',
+        dialogo2: 'Com esses dados calculo a estatística F e o p-valor. Se p < 0.05, a diferença é real com 95% de confiança. Isso me diz QUAL turno, máquina ou operador está causando o problema!',
+        itemEnsinado: 'anova',
       },
     ],
+
+    elementos: [
+      { tipo:'bancada_lab', x:300,  label:'Bancada de Medição' },
+      { tipo:'bancada_lab', x:1200, label:'Análise Estatística' },
+      { tipo:'grafico_cep', x:800,  label:'Carta de Controle Original' },
+      { tipo:'microscopio', x:1800, label:'Análise de Materiais' },
+      { tipo:'operador_linha', x:450,  acao:'medindo_amostra' },
+      { tipo:'operador_linha', x:1400, acao:'anotando_dados' },
+    ],
+
     quiz: [
       {
-        pergunta: 'Um DOE Fatorial 2³ (3 fatores) requer quantas corridas?',
-        opcoes: ['3 corridas', '6 corridas', '8 corridas', '12 corridas'],
-        correta: 2,
-        explicacao: '2³ = 2×2×2 = 8 corridas no fatorial completo. Testa todas as combinações de 3 fatores em 2 níveis cada.'
-      },
-      {
-        pergunta: 'Se o Lead Time é 40h e o Tempo VA é 4h, a eficiência é:',
-        opcoes: ['4%', '10%', '40%', '90%'],
+        pergunta: 'Walter Shewhart criou as cartas de controle em:',
+        opcoes: ['1900', '1924', '1950', '1986'],
         correta: 1,
-        explicacao: 'Eficiência = 4/40 × 100% = 10%. Apenas 10% do tempo gera valor — 90% é desperdício a eliminar.'
+        explicacao: 'Shewhart criou as cartas de controle nos Bell Labs em 1924. Deming levou o conceito ao Japão em 1950.'
       },
       {
-        pergunta: 'No Six Sigma, a meta de 3.4 DPMO significa:',
-        opcoes: ['3.4 defeitos por 100 peças', '3.4 defeitos por 1.000 peças', '3.4 defeitos por 1.000.000 de oportunidades', '3.4% de taxa de defeitos'],
+        pergunta: 'Um Cpk de 1.5 indica que o processo é:',
+        opcoes: ['Incapaz — produzindo defeitos', 'Capaz mas abaixo do padrão Six Sigma', 'Capaz e acima do padrão automotivo (1.33)', 'Excelente — nível Six Sigma'],
         correta: 2,
-        explicacao: 'DPMO = Defeitos Por Milhão de Oportunidades. 3.4 DPMO equivale a 6 desvios-padrão entre a média e o limite mais próximo.'
+        explicacao: 'Cpk 1.5 > 1.33 (padrão automotivo): processo capaz e com boa margem de segurança. Cpk ≥ 1.67 seria nível Six Sigma.'
       },
-    ]
+      {
+        pergunta: 'Na ANOVA, p-valor = 0.03 significa:',
+        opcoes: ['Não há diferença entre grupos', 'Diferença real com 97% de confiança', 'Erro no experimento', 'Amostra insuficiente'],
+        correta: 1,
+        explicacao: 'p = 0.03 < 0.05: rejeitamos H0. Há diferença estatisticamente significativa entre os grupos com 97% de confiança.'
+      },
+    ],
+  },
+
+  // ═══════ 4. MOTOROLA ═══════
+  {
+    id: 'motorola',
+    nome: 'Motorola Inc.',
+    pais: 'Schaumburg, Illinois — 1986',
+    descricao: 'Berço do Six Sigma! Bill Smith criou a metodologia aqui em 1986. A meta: menos de 3.4 defeitos por milhão de oportunidades. A GE adotou em 1995 e economizou US$ 10 bilhões em 5 anos.',
+    fatos: ['Six Sigma criado por Bill Smith em 1986', 'Meta: 3.4 DPMO — 6 desvios-padrão', 'Jack Welch adotou na GE em 1995'],
+    emojiFabrica: '⚡',
+    belt: 3,
+    beltLabel: 'Black Belt',
+
+    bgTop:    '#120808',
+    bgBot:    '#1a0a0a',
+    chaoColor:'#2a1010',
+    chaoTop:  '#903030',
+    platColor:'#3a1515',
+    platTop:  '#c04040',
+    corAcento:'#e8455a',
+
+    placa: {
+      titulo: '⚡ MOTOROLA INC.',
+      sub1:   'Schaumburg, Illinois — 1986',
+      sub2:   'Berço do Six Sigma',
+      cor:    '#e8455a',
+    },
+
+    operadores: [
+      {
+        id: 'bill_smith',
+        nome: 'Bill Smith',
+        cargo: 'Criador do Six Sigma',
+        emoji: '👨‍💼',
+        corUniforme: '#3a1515',
+        x: 500,
+        acao: 'analisando_dados',
+        dialogo1: 'Eu sou Bill Smith. Criei o Six Sigma aqui na Motorola em 1986. A pergunta era: como garantir qualidade em escala industrial? A resposta foi matemática: 6 desvios-padrão entre a média e o limite mais próximo.',
+        missao: 'Ajude-me a testar os 3 circuitos desta linha. Colete os resultados de cada um!',
+        dialogo2: 'Six Sigma = 3.4 DPMO. Isso significa: em 1 milhão de oportunidades, apenas 3.4 serão defeituosas. Para atingir isso usamos DOE — Design of Experiments — para otimizar múltiplos fatores simultaneamente!',
+        itemEnsinado: 'doe',
+      },
+      {
+        id: 'sarah_bb',
+        nome: 'Sarah Johnson',
+        cargo: 'Black Belt Sênior',
+        emoji: '👩‍💼',
+        corUniforme: '#2a1010',
+        x: 1600,
+        acao: 'apresentando',
+        dialogo1: 'Oi! Sou Sarah, Black Belt há 8 anos. Aqui na Motorola aprendi que todo projeto Six Sigma precisa de justificativa financeira. ROI é a linguagem que a diretoria entende!',
+        missao: 'Colete os 3 relatórios de saving espalhados pelos setores!',
+        dialogo2: 'Com esses números calculo o ROI: (Ganho - Investimento) / Investimento × 100%. Um projeto Six Sigma bem conduzido retorna em média 10x o investimento. Isso garante aprovação e continuidade!',
+        itemEnsinado: 'roi',
+      },
+      {
+        id: 'marcus_lean',
+        nome: 'Marcus Torres',
+        cargo: 'Especialista Lean',
+        emoji: '🧑‍🔧',
+        corUniforme: '#4a1818',
+        x: 2600,
+        acao: 'mapeando',
+        dialogo1: 'E aí! Sou Marcus, especialista em Lead Time e Lean. Aqui mapeamos todo o fluxo de valor — do pedido à entrega — para identificar onde o tempo é desperdiçado.',
+        missao: 'Meça o tempo das 3 etapas do processo e me traga os dados!',
+        dialogo2: 'Com esses tempos calculo a Eficiência do Fluxo: Tempo VA / Lead Time Total × 100%. Na maioria dos processos, menos de 10% do tempo agrega valor! Os outros 90% são desperdício eliminável. Isso é Lean!',
+        itemEnsinado: 'leadtime',
+      },
+    ],
+
+    elementos: [
+      { tipo:'bancada_eletro', x:300,  label:'Linha de Circuitos' },
+      { tipo:'bancada_eletro', x:1200, label:'Teste Final' },
+      { tipo:'maquina',        x:800,  label:'Robô Soldagem SMT' },
+      { tipo:'paleteira',      x:2000, velocidade:1.5 },
+      { tipo:'grafico_cep',    x:1000, label:'Monitor de Qualidade' },
+      { tipo:'operador_linha', x:600,  acao:'testando_circuito' },
+      { tipo:'operador_linha', x:1400, acao:'anotando_dados' },
+      { tipo:'operador_linha', x:2200, acao:'embalando' },
+    ],
+
+    quiz: [
+      {
+        pergunta: 'Six Sigma significa atingir no máximo:',
+        opcoes: ['6 defeitos por 100 peças', '3.4 defeitos por milhão de oportunidades', '6% de taxa de defeitos', '3.4 sigma de distância'],
+        correta: 1,
+        explicacao: '3.4 DPMO = Defeitos Por Milhão de Oportunidades. Equivale a 6 desvios-padrão entre a média e o limite mais próximo da especificação.'
+      },
+      {
+        pergunta: 'Um DOE Fatorial 2³ testa quantas combinações?',
+        opcoes: ['3 combinações', '6 combinações', '8 combinações', '12 combinações'],
+        correta: 2,
+        explicacao: '2³ = 2×2×2 = 8 corridas. Testa todas as combinações de 3 fatores em 2 níveis (alto/baixo) — muito mais eficiente que testar um fator por vez.'
+      },
+      {
+        pergunta: 'Se Lead Time = 80h e Tempo VA = 8h, a eficiência é:',
+        opcoes: ['8%', '10%', '80%', '92%'],
+        correta: 1,
+        explicacao: 'Eficiência = 8/80 × 100% = 10%. Apenas 10% do tempo agrega valor. Os outros 90% são desperdícios Lean a eliminar.'
+      },
+    ],
   },
 ];
+
+// ══════════════════════════════════════════
+// ITENS COLETÁVEIS (missões)
+// mapeados por itemEnsinado dos operadores
+// ══════════════════════════════════════════
+var ITEM_INFO = {
+  kanban:    { emoji:'📋', cor:'#f0a832', label:'KANBAN',    formula:'WIP Limit = capacidade real' },
+  kaizen:    { emoji:'🔄', cor:'#27c97c', label:'KAIZEN',    formula:'Hoje > Ontem → Amanhã > Hoje' },
+  dmaic:     { emoji:'⚙️', cor:'#4b8ef0', label:'DMAIC',     formula:'D → M → A → I → C' },
+  cep:       { emoji:'📉', cor:'#e8455a', label:'CEP/SPC',   formula:'LC ± 3σ → LCS e LCI' },
+  histograma:{ emoji:'📊', cor:'#27c97c', label:'HISTOGRAMA',formula:'Classes = 1 + 3.322×log₁₀(n)' },
+  pareto:    { emoji:'📋', cor:'#f0a832', label:'PARETO',    formula:'20% causas → 80% efeitos' },
+  cpk:       { emoji:'📊', cor:'#a78bfa', label:'Cp/Cpk',    formula:'Cpk = min[(LSE-μ)/3σ,(μ-LIE)/3σ]' },
+  anova:     { emoji:'📈', cor:'#4b8ef0', label:'ANOVA',     formula:'F = Var.Entre / Var.Dentro' },
+  doe:       { emoji:'🧪', cor:'#f0a832', label:'DOE',       formula:'Corridas = 2ᵏ (fatorial completo)' },
+  roi:       { emoji:'💰', cor:'#a78bfa', label:'ROI',       formula:'ROI = (Ganho-Invest.)/Invest.×100%' },
+  leadtime:  { emoji:'⏱️', cor:'#27c97c', label:'LEAD TIME', formula:'Eficiência = (VA/LT) × 100%' },
+};
